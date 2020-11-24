@@ -1,6 +1,7 @@
 import javax.microedition.lcdui.*;
 import javax.microedition.midlet.*;
 import java.io.*;
+import java.util.Random;
 
 public class AI extends MIDlet
 {
@@ -46,22 +47,35 @@ class MainCanvas extends Canvas implements Runnable
 		
 		while(true){
 			try{
-				Thread.sleep(200);
+				Thread.sleep(600);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
+			
+			Random rd = new Random();
+			int b= rd.nextInt(3)+1;
+			//int a = (int)(Math.random()*10);
+			if(b%3==0){
+				continue;
+			}
 			if(bossX<x && bossX<225){
-				bossX++;
+				bossX+=3;
 			}else if(bossX>x && bossX>0){
-				bossX--;
+				bossX-=3;
 			}
 			if(bossY<y && bossY<265){
-				bossY++;
+				bossY+=3;
 			}else if(bossY>y && bossY>0){
-				bossY--;
+				bossY-=3;
 			}
 			repaint();
-			System.out.println("这里执行了");
+			if(bossX==x & bossY==y){
+				System.out.println("hero被追上了。。。");
+			}else{
+				System.out.println("boss正在追击hero!!");
+			}
+			
+
 		}
 	}
 
